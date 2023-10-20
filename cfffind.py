@@ -29,6 +29,7 @@ def cfffind():
         else:
             no_github_packages.append(package)
 
+    citation_urls = []
     for url in github_urls:
         repository = "/".join(url.split("/")[3:])
         branch = "main"
@@ -42,7 +43,9 @@ def cfffind():
 
             for file in files:
                 if file["name"].startswith("CITATION"):
-                    print(file["download_url"])
+                    citation_urls.append(file["download_url"])
+                    click.echo(file["download_url"])
+    return citation_urls
 
 
 if __name__ == "__main__":
